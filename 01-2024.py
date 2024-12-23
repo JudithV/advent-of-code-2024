@@ -1,5 +1,3 @@
-
-
 def lists_from_file(fileName: str):
     list1 = []
     list2 = []
@@ -15,7 +13,6 @@ def lists_from_file(fileName: str):
 def get_distances(list1, list2):
     dist = 0
     for n1, n2 in zip(list1, list2):
-        print(n1)
         dist += abs(n1 - n2)
     return dist
 
