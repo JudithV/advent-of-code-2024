@@ -17,6 +17,6 @@ def get_distances(list1, list2):
     return dist
 
 if __name__ == '__main__':
-    list1, list2 = lists_from_file('input.txt')
+    list1, list2 = lists_from_file('day_01/input.txt')
     dist = get_distances(list1, list2)
     print('Distance between the lists: ', dist)
