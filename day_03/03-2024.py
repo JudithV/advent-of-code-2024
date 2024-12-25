@@ -1,21 +1,25 @@
 import re
 
 def get_lines_file(fileName: str):
-    lines = []
-    input = open(fileName, 'r')
-    for line in input:
-        lines.append(line)
-    return lines
+    with open(fileName) as f:
+        return f.read()
 
 def get_sum_line(line):
     sum = 0
-    find = r"mul\((\d+),(\d+)\)"
-    matches = re.findall(find, line)
-    for x, y in matches:
-        sum += (int(x) * int(y))
+    find_full = r"(mul\((\d{1,3}),(\d{1,3})\)|do\(\)|don't\(\))"
+    mul = True
+    full_coincidences = re.findall(find_full, line)
+    for text, x, y in full_coincidences:
+        if "don't()" in text:
+            mul = False
+        if "do()" in text:
+            mul = True
+        else:
+            if mul:
+                sum += (int(x) * int(y))
     return sum
 
 if __name__ == '__main__':
-    lines = get_lines_file('day_03/input.txt')
-    val = sum(get_sum_line(line) for line in lines)
+    text = get_lines_file('day_03/input.txt')
+    val = get_sum_line(text)
     print('The total value after the multiplications is ', val)
