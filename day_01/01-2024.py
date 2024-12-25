@@ -16,7 +16,15 @@ def get_distances(list1, list2):
         dist += abs(n1 - n2)
     return dist
 
+def get_similarity_score(list1, list2):
+    sim = 0
+    for num in list1:
+        sim += num * list2.count(num)
+    return sim
+
 if __name__ == '__main__':
     list1, list2 = lists_from_file('day_01/input.txt')
+    sim = get_similarity_score(list1, list2)
+    print('The similarity score between the lists is', sim)
     dist = get_distances(list1, list2)
     print('Distance between the lists: ', dist)
